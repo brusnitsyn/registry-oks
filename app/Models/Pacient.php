@@ -10,10 +10,17 @@ class Pacient extends Model
         'num',
         'fio',
         'snils',
+        'tel',
         'birth_at',
         'receipt_at',
         'discharge_at',
         'lpu_id',
+    ];
+
+    protected $casts = [
+        'birth_at' => 'datetime:Y-m-d',
+        'receipt_at' => 'datetime:Y-m-d',
+        'discharge_at' => 'datetime:Y-m-d',
     ];
 
     public function lpu()

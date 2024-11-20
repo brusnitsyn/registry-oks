@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('num')->nullable();
             $table->string('fio');
             $table->string('snils')->nullable();
+            $table->string('tel')->nullable();
             $table->timestamp('birth_at')->nullable();
             $table->timestamp('receipt_at');
             $table->timestamp('discharge_at')->nullable();

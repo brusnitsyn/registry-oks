@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Pacient::class);
             $table->timestamp('begin_at');
             $table->timestamp('end_at')->nullable();
-            $table->text('complications')->nullable();
             $table->foreignIdFor(\App\Models\DispState::class);
             $table->foreignIdFor(\App\Models\DispDopHealth::class);
             $table->foreignIdFor(\App\Models\LekPrState::class);

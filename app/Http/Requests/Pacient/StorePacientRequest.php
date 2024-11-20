@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Pacient;
 
+use App\Models\Disp;
 use App\Models\Pacient;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
@@ -27,17 +28,19 @@ class StorePacientRequest extends FormRequest
             'num' => ['nullable', 'string'],
             'fio' => ['required', 'string'],
             'snils' => ['required', 'string'],
-            'birth_at' => ['required', 'numeric'],
+            'tel' => ['required', 'string'],
+            'birth_at' => ['required'],
             'lpu_id' => ['required', 'numeric'],
-            'receipt_at' => ['required', 'numeric'],
-            'discharge_at' => ['nullable', 'numeric'],
+            'receipt_at' => ['required'],
+            'discharge_at' => ['nullable'],
 
-            'disp.begin_at' => ['required', 'numeric'],
-            'disp.end_at' => ['nullable', 'numeric'],
+            'disp.id' => ['nullable', 'numeric'],
+            'disp.begin_at' => ['required'],
+            'disp.end_at' => ['nullable'],
             'disp.main_diagnos_id' => ['required', 'numeric'],
-            'disp.second_diagnos_id' => ['nullable', 'numeric'],
+            'disp.conco_diagnos_id' => ['nullable', 'numeric'],
             'disp.disp_state_id' => ['nullable', 'numeric'],
-            'disp.complications' => ['nullable', 'string'],
+            'disp.complications' => ['nullable', 'numeric'],
             'disp.lek_pr_state_id' => ['nullable', 'numeric'],
             'disp.disp_dop_health_id' => ['nullable', 'numeric'],
         ];
@@ -46,15 +49,16 @@ class StorePacientRequest extends FormRequest
     public function store()
     {
         $mainDiagnosId = $this->validated('disp.main_diagnos_id');
-        $secondDiagnosId = $this->validated('disp.second_diagnos_id');
+        $concoDiagId = $this->validated('disp.conco_diagnos_id');
+        $complicationsDisp = $this->validated('disp.complications');
 
         $pacientData = $this->validated();
 
-        if (isset($pacientData['birth_at'])) $pacientData['birth_at'] = Carbon::createFromTimestampMs($pacientData['birth_at'], env('APP_TIMEZONE'));
-        if (isset($pacientData['receipt_at'])) $pacientData['receipt_at'] = Carbon::createFromTimestampMs($pacientData['receipt_at'], env('APP_TIMEZONE'));
-        if (isset($pacientData['discharge_at'])) $pacientData['discharge_at'] = Carbon::createFromTimestampMs($pacientData['discharge_at'], env('APP_TIMEZONE'));
-        if (isset($pacientData['disp']['begin_at'])) $pacientData['disp']['begin_at'] = Carbon::createFromTimestampMs($pacientData['disp']['begin_at'], env('APP_TIMEZONE'));
-        if (isset($pacientData['disp']['end_at'])) $pacientData['disp']['end_at'] = Carbon::createFromTimestampMs($pacientData['disp']['end_at'], env('APP_TIMEZONE'));
+        if (isset($pacientData['birth_at']) && is_numeric($pacientData['birth_at'])) $pacientData['birth_at'] = Carbon::createFromTimestampMs($pacientData['birth_at'], env('APP_TIMEZONE'));
+        if (isset($pacientData['receipt_at']) && is_numeric($pacientData['receipt_at'])) $pacientData['receipt_at'] = Carbon::createFromTimestampMs($pacientData['receipt_at'], env('APP_TIMEZONE'));
+        if (isset($pacientData['discharge_at']) && is_numeric($pacientData['discharge_at'])) $pacientData['discharge_at'] = Carbon::createFromTimestampMs($pacientData['discharge_at'], env('APP_TIMEZONE'));
+        if (isset($pacientData['disp']['begin_at']) && is_numeric($pacientData['disp']['begin_at'])) $pacientData['disp']['begin_at'] = Carbon::createFromTimestampMs($pacientData['disp']['begin_at'], env('APP_TIMEZONE'));
+        if (isset($pacientData['disp']['end_at']) && is_numeric($pacientData['disp']['end_at'])) $pacientData['disp']['end_at'] = Carbon::createFromTimestampMs($pacientData['disp']['end_at'], env('APP_TIMEZONE'));
 
         $pacient = Pacient::where('snils', $pacientData['snils'])->first();
 
@@ -62,18 +66,21 @@ class StorePacientRequest extends FormRequest
             $pacient = Pacient::create($pacientData);
         }
 
-        $disp = $pacient->disp()->create($pacientData['disp']);
+        $disp = null;
+        if (isset($pacientData['disp']['id'])) $disp = Disp::where('id', $pacientData['disp']['id'])->first();
 
-        $disp->diagnoses()->create([
-            'mkb_id' => $mainDiagnosId,
-            'diagnos_type_id' => 1
-        ]);
+        if (!$disp) {
+            $disp = $pacient->disp()->create($pacientData['disp']);
+        }
 
-        if ($secondDiagnosId) {
-            $disp->diagnoses()->create([
-                'mkb_id' => $secondDiagnosId,
-                'diagnos_type_id' => 2
-            ]);
+        $disp->diagnoses()->updateOrCreate(['disp_id' => $disp->id], ['mkb_id' => $mainDiagnosId, 'diagnos_type_id' => 1]);
+
+        if ($complicationsDisp) {
+            $disp->complications()->updateOrCreate(['disp_id' => $disp->id], ['complication_id' => $complicationsDisp]);
+        }
+
+        if ($concoDiagId) {
+            $disp->conco_diag()->updateOrCreate(['disp_id' => $disp->id], ['conco_diag_id' => $concoDiagId]);
         }
 
         return $pacient;

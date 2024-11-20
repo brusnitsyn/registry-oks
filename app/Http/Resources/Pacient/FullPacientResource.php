@@ -23,6 +23,7 @@ class FullPacientResource extends JsonResource
             'num' => $this->num,
             'fio' => $this->fio,
             'snils' => $this->snils,
+            'tel' => $this->tel,
             'birth_at' => $this->birth_at,
 
             'disp' => DispResource::make($this->active_disp),

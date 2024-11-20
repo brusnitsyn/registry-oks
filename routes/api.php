@@ -33,10 +33,13 @@ Route::prefix('pacient')->group(function () {
 
 Route::get('/lpu', [LpuController::class, 'index'])->middleware(['auth:sanctum']);
 Route::get('/mkb', [\App\Http\Controllers\Api\v1\MkbController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('/conco-diagnoses', [\App\Http\Controllers\Api\v1\MkbController::class, 'conco'])->middleware(['auth:sanctum']);
+Route::get('/complication', [\App\Http\Controllers\Api\v1\MkbController::class, 'complication'])->middleware(['auth:sanctum']);
 Route::get('/control-point', [\App\Http\Controllers\Api\v1\ControlPointController::class, 'index'])->middleware(['auth:sanctum']);
 
 Route::prefix('disp')->group(function () {
     Route::get('/status', [\App\Http\Controllers\Api\v1\DispController::class, 'index'])->middleware(['auth:sanctum']);
+    Route::get('/result-call', [\App\Http\Controllers\Api\v1\DispController::class, 'resultCall'])->middleware(['auth:sanctum']);
 });
 
 Route::prefix('lek-pr-state')->group(function () {
