@@ -21,13 +21,12 @@ class Pacient extends Model
         return $this->belongsTo(Lpu::class);
     }
 
-    public function diagnoses()
+    public function disp()
     {
-        return $this->hasMany(DiagnosPacient::class);
+        return $this->hasMany(Disp::class);
     }
 
-    public function complications()
-    {
-        return $this->hasMany(Complication::class);
+    public function active_disp() {
+        return $this->hasOne(Disp::class)->where('end_at', null);
     }
 }

@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DiagnosPacient extends Model
+class DispDiagnos extends Model
 {
     protected $fillable = [
-        'mkb_id',
+        'disp_id',
         'diagnos_type_id',
-        'pacient_id'
+        'mkb_id',
     ];
 
     public function diagnos_type()
@@ -22,8 +22,8 @@ class DiagnosPacient extends Model
         return $this->belongsTo(Mkb::class);
     }
 
-    public function pacient()
+    public function disp()
     {
-        return $this->belongsTo(Pacient::class);
+        return $this->belongsTo(Disp::class);
     }
 }

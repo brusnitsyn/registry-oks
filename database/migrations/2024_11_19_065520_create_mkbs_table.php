@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('diagnos_pacients', function (Blueprint $table) {
+        Schema::create('mkbs', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Mkb::class);
-            $table->foreignIdFor(\App\Models\DiagnosType::class);
-            $table->foreignIdFor(\App\Models\Pacient::class);
+            $table->string('ds');
+            $table->string('name');
+            $table->string('rem')->nullable();
+            $table->dateTime('begin_at');
+            $table->dateTime('end_at');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('diagnos_pacients');
+        Schema::dropIfExists('mkbs');
     }
 };

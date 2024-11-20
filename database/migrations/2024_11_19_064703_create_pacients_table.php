@@ -14,13 +14,12 @@ return new class extends Migration
     {
         Schema::create('pacients', function (Blueprint $table) {
             $table->id();
-            $table->string('num');
+            $table->string('num')->nullable();
             $table->string('fio');
             $table->string('snils')->nullable();
-            $table->dateTime('birth_at')->nullable();
-            $table->dateTime('receipt_at');
-            $table->dateTime('discharge_at')->nullable();
-            $table->foreignIdFor(Lpu::class)->nullable();
+            $table->timestamp('birth_at')->nullable();
+            $table->timestamp('receipt_at');
+            $table->timestamp('discharge_at')->nullable();
             $table->foreignIdFor(Lpu::class)->nullable();
             $table->timestamps();
         });
