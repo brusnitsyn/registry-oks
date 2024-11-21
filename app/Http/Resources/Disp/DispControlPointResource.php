@@ -15,11 +15,14 @@ class DispControlPointResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'point' => $this->controlPoint->name,
-            'control_at' => $this->control_at,
-            'controled_at' => $this->controled_at,
-            'control_point_option_id' => $this->control_point_option_id
+            'control_point' => [
+                'id' => $this->id,
+                'point' => $this->controlPoint->name,
+                'control_at' => $this->control_at,
+                'controled_at' => $this->controled_at,
+                'control_point_option_id' => $this->control_point_option_id
+            ],
+            'call' => $this->calls
         ];
     }
 }

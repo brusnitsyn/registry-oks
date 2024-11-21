@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Grpc\Call;
 use Illuminate\Database\Eloquent\Model;
 
 class DispControlPoint extends Model
@@ -27,5 +28,10 @@ class DispControlPoint extends Model
     public function controlPointOption()
     {
         return $this->belongsTo(ControlPointOption::class);
+    }
+
+    public function calls()
+    {
+        return $this->hasOne(CallDispControlPoint::class);
     }
 }

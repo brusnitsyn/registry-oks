@@ -25,6 +25,7 @@ class ShortPacientResource extends JsonResource
             'birth_at' => $this->birth_at,
             'receipt_at' => $this->receipt_at,
             'discharge_at' => $this->discharge_at,
+            'ds' => $this->active_disp->main_diag->mkb->ds
         ];
     }
 }

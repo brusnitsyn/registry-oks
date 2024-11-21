@@ -34,6 +34,7 @@ class PacientEditResource extends JsonResource
                 'complications_id' => $this->active_disp->complications->complication->id ?? null,
                 'lek_pr_state_id' => $this->active_disp->lek_pr_state_id,
                 'disp_dop_health_id' => $this->active_disp->disp_dop_health_id,
+                'control_points' => $this->active_disp->control_points
             ],
         ];
     }

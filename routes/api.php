@@ -36,6 +36,7 @@ Route::get('/mkb', [\App\Http\Controllers\Api\v1\MkbController::class, 'index'])
 Route::get('/conco-diagnoses', [\App\Http\Controllers\Api\v1\MkbController::class, 'conco'])->middleware(['auth:sanctum']);
 Route::get('/complication', [\App\Http\Controllers\Api\v1\MkbController::class, 'complication'])->middleware(['auth:sanctum']);
 Route::get('/control-point', [\App\Http\Controllers\Api\v1\ControlPointController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('/control-point-result', [\App\Http\Controllers\Api\v1\ControlPointController::class, 'result'])->middleware(['auth:sanctum']);
 
 Route::prefix('disp')->group(function () {
     Route::get('/status', [\App\Http\Controllers\Api\v1\DispController::class, 'index'])->middleware(['auth:sanctum']);
@@ -52,6 +53,7 @@ Route::prefix('disp-dop-health')->group(function () {
 
 Route::prefix('control-point')->group(function () {
     Route::prefix('{controlPoint}')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\v1\ControlPointController::class, 'get'])->middleware(['auth:sanctum']);
         Route::put('/', [\App\Http\Controllers\Api\v1\ControlPointController::class, 'update'])->middleware(['auth:sanctum']);
     });
 });

@@ -16,6 +16,7 @@ class DiagnosResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'ds' => $this->ds,
             'name' => "{$this->mkb->ds} {$this->mkb->name}",
             'type' => $this->diagnos_type->name
         ];
