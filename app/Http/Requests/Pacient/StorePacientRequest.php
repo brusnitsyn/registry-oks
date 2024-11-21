@@ -71,6 +71,8 @@ class StorePacientRequest extends FormRequest
 
         if (!$disp) {
             $disp = $pacient->disp()->create($pacientData['disp']);
+        } else {
+            $disp->update($pacientData['disp']);
         }
 
         $disp->diagnoses()->updateOrCreate(['disp_id' => $disp->id], ['mkb_id' => $mainDiagnosId, 'diagnos_type_id' => 1]);

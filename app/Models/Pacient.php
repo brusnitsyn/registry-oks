@@ -33,7 +33,13 @@ class Pacient extends Model
         return $this->hasMany(Disp::class);
     }
 
-    public function active_disp() {
+    public function active_disp()
+    {
         return $this->hasOne(Disp::class)->where('end_at', null);
+    }
+
+    public function last_disp()
+    {
+        return $this->hasOne(Disp::class)->orderBy('begin_at', 'desc');
     }
 }

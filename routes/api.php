@@ -24,6 +24,7 @@ Route::prefix('pacient')->group(function () {
     Route::get('/', [PacientController::class, 'index'])->middleware(['auth:sanctum']);
     Route::post('/', [PacientController::class, 'create'])->middleware(['auth:sanctum']);
     Route::prefix('{pacient}')->group(function () {
+        Route::post('/disp', [\App\Http\Controllers\Api\v1\DispController::class, 'create'])->middleware(['auth:sanctum']);
         Route::get('/', [PacientController::class, 'show'])->middleware(['auth:sanctum']);
         Route::get('/edit', [PacientController::class, 'edit'])->middleware(['auth:sanctum']);
         Route::post('/', [PacientController::class, 'update'])->middleware(['auth:sanctum']);
@@ -41,6 +42,9 @@ Route::get('/control-point-result', [\App\Http\Controllers\Api\v1\ControlPointCo
 Route::prefix('disp')->group(function () {
     Route::get('/status', [\App\Http\Controllers\Api\v1\DispController::class, 'index'])->middleware(['auth:sanctum']);
     Route::get('/result-call', [\App\Http\Controllers\Api\v1\DispController::class, 'resultCall'])->middleware(['auth:sanctum']);
+    Route::prefix('{disp}')->group(function () {
+       Route::get('/', [\App\Http\Controllers\Api\v1\DispController::class, 'get'])->middleware(['auth:sanctum']);
+    });
 });
 
 Route::prefix('lek-pr-state')->group(function () {
