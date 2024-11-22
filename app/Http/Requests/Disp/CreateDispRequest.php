@@ -27,9 +27,9 @@ class CreateDispRequest extends FormRequest
             'begin_at' => ['required'],
             'end_at' => ['nullable'],
             'main_diagnos_id' => ['required', 'numeric'],
-            'conco_diagnos_id' => ['nullable', 'numeric'],
+            'conco_diagnos_id' => ['nullable', 'array'],
             'disp_state_id' => ['nullable', 'numeric'],
-            'complications_id' => ['nullable', 'numeric'],
+            'complications_id' => ['nullable', 'array'],
             'lek_pr_state_id' => ['nullable', 'numeric'],
             'disp_dop_health_id' => ['nullable', 'numeric'],
         ];
@@ -52,11 +52,15 @@ class CreateDispRequest extends FormRequest
         $disp->diagnoses()->updateOrCreate(['disp_id' => $disp->id], ['mkb_id' => $data['main_diagnos_id'], 'diagnos_type_id' => 1]);
 
         if ($data['complications_id']) {
-            $disp->complications()->updateOrCreate(['disp_id' => $disp->id], ['complication_id' => $data['complications_id']]);
+            foreach ($data['complications_id'] as $complication) {
+                $disp->complications()->create(['complication_id' => $complication]);
+            }
         }
 
         if ($data['conco_diagnos_id']) {
-            $disp->conco_diag()->updateOrCreate(['disp_id' => $disp->id], ['conco_diag_id' => $data['conco_diagnos_id']]);
+            foreach ($data['conco_diagnos_id'] as $conco) {
+                $disp->conco_diag()->updateOrCreate(['conco_diag_id' => $conco]);
+            }
         }
 
         return response()->json()->setStatusCode(201);
