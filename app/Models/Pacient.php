@@ -40,6 +40,6 @@ class Pacient extends Model
 
     public function last_disp()
     {
-        return $this->hasOne(Disp::class)->orderBy('begin_at', 'desc');
+        return $this->hasOne(Disp::class)->orderBy('end_at', 'desc');
     }
 }

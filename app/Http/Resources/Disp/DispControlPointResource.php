@@ -22,7 +22,7 @@ class DispControlPointResource extends JsonResource
                 'controled_at' => $this->controled_at,
                 'control_point_option_id' => $this->control_point_option_id
             ],
-            'call' => $this->calls
+            'call' => CallDispControlPointResource::make($this->calls)
         ];
     }
 }

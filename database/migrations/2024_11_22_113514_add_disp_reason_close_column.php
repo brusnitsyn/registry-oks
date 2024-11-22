@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('control_point_options', function (Blueprint $table) {
-            $table->id();
-            $table->string('num');
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('disps', function (Blueprint $table) {
+            $table->foreignIdFor(\App\Models\DispReasonClose::class)->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('control_point_options');
+        Schema::table('disps', function (Blueprint $table) {
+            $table->dropColumn('disp_reason_close_id');
+        });
     }
 };

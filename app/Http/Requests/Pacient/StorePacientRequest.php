@@ -37,10 +37,11 @@ class StorePacientRequest extends FormRequest
             'disp.id' => ['nullable', 'numeric'],
             'disp.begin_at' => ['required'],
             'disp.end_at' => ['nullable'],
+            'disp.disp_reason_close_id' => ['nullable', 'numeric'],
             'disp.main_diagnos_id' => ['required', 'numeric'],
-            'disp.conco_diagnos_id' => ['nullable', 'numeric'],
+            'disp.conco_diagnos_id' => ['nullable', 'array'],
             'disp.disp_state_id' => ['nullable', 'numeric'],
-            'disp.complications' => ['nullable', 'numeric'],
+            'disp.complications' => ['nullable', 'array'],
             'disp.lek_pr_state_id' => ['nullable', 'numeric'],
             'disp.disp_dop_health_id' => ['nullable', 'numeric'],
         ];
@@ -49,7 +50,7 @@ class StorePacientRequest extends FormRequest
     public function store()
     {
         $mainDiagnosId = $this->validated('disp.main_diagnos_id');
-        $concoDiagId = $this->validated('disp.conco_diagnos_id');
+        $concoDiagnos = $this->validated('disp.conco_diagnos_id');
         $complicationsDisp = $this->validated('disp.complications');
 
         $pacientData = $this->validated();
@@ -78,11 +79,15 @@ class StorePacientRequest extends FormRequest
         $disp->diagnoses()->updateOrCreate(['disp_id' => $disp->id], ['mkb_id' => $mainDiagnosId, 'diagnos_type_id' => 1]);
 
         if ($complicationsDisp) {
-            $disp->complications()->updateOrCreate(['disp_id' => $disp->id], ['complication_id' => $complicationsDisp]);
+            foreach ($complicationsDisp as $complDisp) {
+                $disp->complications()->create(['complication_id' => $complDisp]);
+            }
         }
 
-        if ($concoDiagId) {
-            $disp->conco_diag()->updateOrCreate(['disp_id' => $disp->id], ['conco_diag_id' => $concoDiagId]);
+        if ($concoDiagnos) {
+            foreach ($concoDiagnos as $concoDiagId) {
+                $disp->conco_diag()->create(['conco_diag_id' => $concoDiagId]);
+            }
         }
 
         return $pacient;

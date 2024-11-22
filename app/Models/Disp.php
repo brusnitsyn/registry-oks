@@ -13,7 +13,9 @@ class Disp extends Model
         'disp_state_id',
         'pacient_id',
         'lek_pr_state_id',
+
         'disp_dop_health_id',
+        'disp_reason_close_id'
     ];
 
     protected $casts = [
@@ -28,7 +30,7 @@ class Disp extends Model
 
     public function disp_status()
     {
-        return $this->belongsTo(DispState::class);
+        return $this->belongsTo(DispState::class, 'disp_state_id');
     }
 
     public function diagnoses()
@@ -43,12 +45,22 @@ class Disp extends Model
 
     public function conco_diag()
     {
-        return $this->hasOne(DispConcoDiag::class);
+        return $this->hasMany(DispConcoDiag::class);
+    }
+
+    public function conco_diag_arr()
+    {
+        return $this->hasMany(DispConcoDiag::class)->select('conco_diag_id');
+    }
+
+    public function complications_arr()
+    {
+        return $this->hasMany(ComplicationDisp::class)->select('complication_id');
     }
 
     public function complications()
     {
-        return $this->hasOne(ComplicationDisp::class);
+        return $this->hasMany(ComplicationDisp::class);
     }
 
     public function lek_pr_state()
@@ -59,6 +71,36 @@ class Disp extends Model
     public function disp_dop_health()
     {
         return $this->belongsTo(DispDopHealth::class);
+    }
+
+    public function disp_reason_close()
+    {
+        return $this->belongsTo(DispReasonClose::class);
+    }
+
+    public function day3()
+    {
+        return $this->hasOne(DispControlPoint::class)->where('control_point_id', 1);
+    }
+
+    public function mes1()
+    {
+        return $this->hasOne(DispControlPoint::class)->where('control_point_id', 2);
+    }
+
+    public function mes3()
+    {
+        return $this->hasOne(DispControlPoint::class)->where('control_point_id', 3);
+    }
+
+    public function mes6()
+    {
+        return $this->hasOne(DispControlPoint::class)->where('control_point_id', 4);
+    }
+
+    public function mes12()
+    {
+        return $this->hasOne(DispControlPoint::class)->where('control_point_id', 5);
     }
 
 

@@ -41,9 +41,11 @@ Route::get('/control-point-result', [\App\Http\Controllers\Api\v1\ControlPointCo
 
 Route::prefix('disp')->group(function () {
     Route::get('/status', [\App\Http\Controllers\Api\v1\DispController::class, 'index'])->middleware(['auth:sanctum']);
+    Route::get('/reason', [\App\Http\Controllers\Api\v1\DispController::class, 'reason'])->middleware(['auth:sanctum']);
     Route::get('/result-call', [\App\Http\Controllers\Api\v1\DispController::class, 'resultCall'])->middleware(['auth:sanctum']);
     Route::prefix('{disp}')->group(function () {
        Route::get('/', [\App\Http\Controllers\Api\v1\DispController::class, 'get'])->middleware(['auth:sanctum']);
+       Route::put('/', [\App\Http\Controllers\Api\v1\DispController::class, 'update'])->middleware(['auth:sanctum']);
     });
 });
 

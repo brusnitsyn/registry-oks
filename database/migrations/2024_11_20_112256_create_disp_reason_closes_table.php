@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('control_point_options', function (Blueprint $table) {
+        Schema::create('disp_reason_closes', function (Blueprint $table) {
             $table->id();
-            $table->string('num');
+            $table->string('num')->nullable();
             $table->string('name');
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('control_point_options');
+        Schema::dropIfExists('disp_reason_closes');
     }
 };

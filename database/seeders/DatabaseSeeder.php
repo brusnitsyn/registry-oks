@@ -8,6 +8,7 @@ use App\Models\ControlPoint;
 use App\Models\ControlPointOption;
 use App\Models\DiagnosType;
 use App\Models\DispDopHealth;
+use App\Models\DispReasonClose;
 use App\Models\DispState;
 use App\Models\LekPrState;
 use App\Models\Lpu;
@@ -80,7 +81,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Взят на учет'
         ]);
         DispState::create([
-            'name' => 'Не взят на учет'
+            'name' => 'Снят с учета'
         ]);
 
         LekPrState::create([
@@ -142,18 +143,27 @@ class DatabaseSeeder extends Seeder
 //        ]);
 
         ControlPointOption::create([
+            'num' => '0',
+            'name' => 'Без результата'
+        ]);
+        ControlPointOption::create([
+            'num' => '1',
             'name' => 'Норма'
         ]);
         ControlPointOption::create([
+            'num' => '2',
             'name' => 'В пределах нормы'
         ]);
         ControlPointOption::create([
+            'num' => '3',
             'name' => 'Требует консультации'
         ]);
         ControlPointOption::create([
+            'num' => '4',
             'name' => 'Вызов врача на дом'
         ]);
         ControlPointOption::create([
+            'num' => '5',
             'name' => 'Вызов СМП'
         ]);
 
@@ -189,6 +199,15 @@ class DatabaseSeeder extends Seeder
         ResultCall::create([ 'name' => 'Успешный' ]);
         ResultCall::create([ 'name' => 'Не берет трубку/выключен телефон' ]);
         ResultCall::create([ 'name' => 'Пациент отказывается от предоставления информации' ]);
+
+        DispReasonClose::create([ 'num' => '1', 'name' => 'Выздоровление' ]);
+        DispReasonClose::create([ 'num' => '4', 'name' => 'Смерть' ]);
+        DispReasonClose::create([ 'num' => '5', 'name' => 'Прочие' ]);
+        DispReasonClose::create([ 'num' => '6', 'name' => 'Снятие диагноза' ]);
+        DispReasonClose::create([ 'num' => '21', 'name' => 'Выбытие в другой субъект РФ' ]);
+        DispReasonClose::create([ 'num' => '22', 'name' => 'Выбытие за пределы РФ' ]);
+        DispReasonClose::create([ 'num' => '31', 'name' => 'Перевод в другую медицинскую организацию' ]);
+        DispReasonClose::create([ 'num' => '32', 'name' => 'Перевод в ведомственную организацию (в том числе ФСИН)' ]);
 
 //        Mkb::create([ 'ds' => 'I21.0',  'name' => 'Острый трансмуральный инфаркт передней стенки миокарда', 'begin_at' => Carbon::now()->subCenturies()->startOfCentury(), 'end_at' => Carbon::now()->addCenturies()->endOfCentury() ]);
 //        Mkb::create([ 'ds' => 'I21.1',  'name' => 'Острый трансмуральный инфаркт нижней стенки миокарда', 'begin_at' => Carbon::now()->subCenturies()->startOfCentury(), 'end_at' => Carbon::now()->addCenturies()->endOfCentury() ]);
