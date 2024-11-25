@@ -29,7 +29,7 @@ class FullPacientResource extends JsonResource
             'discharge_at' => $this->discharge_at,
 
             'disp' => DispResource::make($this->active_disp),
-            'disps' => DispResource::collection($this->disp)
+            'disps' => DispResource::collection($this->not_active_disps)
         ];
     }
 }

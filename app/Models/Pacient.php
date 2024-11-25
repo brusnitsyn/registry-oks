@@ -33,6 +33,11 @@ class Pacient extends Model
         return $this->hasMany(Disp::class);
     }
 
+    public function not_active_disps()
+    {
+        return $this->hasMany(Disp::class)->whereNotNull('end_at');
+    }
+
     public function active_disp()
     {
         return $this->hasOne(Disp::class)->where('end_at', null);

@@ -55,11 +55,11 @@ class StorePacientRequest extends FormRequest
 
         $pacientData = $this->validated();
 
-        if (isset($pacientData['birth_at']) && is_numeric($pacientData['birth_at'])) $pacientData['birth_at'] = Carbon::createFromTimestampMs($pacientData['birth_at'], env('APP_TIMEZONE'));
-        if (isset($pacientData['receipt_at']) && is_numeric($pacientData['receipt_at'])) $pacientData['receipt_at'] = Carbon::createFromTimestampMs($pacientData['receipt_at'], env('APP_TIMEZONE'));
-        if (isset($pacientData['discharge_at']) && is_numeric($pacientData['discharge_at'])) $pacientData['discharge_at'] = Carbon::createFromTimestampMs($pacientData['discharge_at'], env('APP_TIMEZONE'));
-        if (isset($pacientData['disp']['begin_at']) && is_numeric($pacientData['disp']['begin_at'])) $pacientData['disp']['begin_at'] = Carbon::createFromTimestampMs($pacientData['disp']['begin_at'], env('APP_TIMEZONE'));
-        if (isset($pacientData['disp']['end_at']) && is_numeric($pacientData['disp']['end_at'])) $pacientData['disp']['end_at'] = Carbon::createFromTimestampMs($pacientData['disp']['end_at'], env('APP_TIMEZONE'));
+        if (isset($pacientData['birth_at']) && is_numeric($pacientData['birth_at'])) $pacientData['birth_at'] = Carbon::createFromTimestampMs($pacientData['birth_at'], env('APP_TIMEZONE'))->toDateString();
+        if (isset($pacientData['receipt_at']) && is_numeric($pacientData['receipt_at'])) $pacientData['receipt_at'] = Carbon::createFromTimestampMs($pacientData['receipt_at'], env('APP_TIMEZONE'))->toDateString();
+        if (isset($pacientData['discharge_at']) && is_numeric($pacientData['discharge_at'])) $pacientData['discharge_at'] = Carbon::createFromTimestampMs($pacientData['discharge_at'], env('APP_TIMEZONE'))->toDateString();
+        if (isset($pacientData['disp']['begin_at']) && is_numeric($pacientData['disp']['begin_at'])) $pacientData['disp']['begin_at'] = Carbon::createFromTimestampMs($pacientData['disp']['begin_at'])->toDateString();
+        if (isset($pacientData['disp']['end_at']) && is_numeric($pacientData['disp']['end_at'])) $pacientData['disp']['end_at'] = Carbon::createFromTimestampMs($pacientData['disp']['end_at'], env('APP_TIMEZONE'))->toDateString();
 
         $pacient = Pacient::where('snils', $pacientData['snils'])->first();
 
@@ -79,12 +79,14 @@ class StorePacientRequest extends FormRequest
         $disp->diagnoses()->updateOrCreate(['disp_id' => $disp->id], ['mkb_id' => $mainDiagnosId, 'diagnos_type_id' => 1]);
 
         if ($complicationsDisp) {
+            if ($disp->complications()->count() > 0) $disp->complications()->delete();
             foreach ($complicationsDisp as $complDisp) {
                 $disp->complications()->create(['complication_id' => $complDisp]);
             }
         }
 
         if ($concoDiagnos) {
+            if ($disp->conco_diag()->count() > 0) $disp->conco_diag()->delete();
             foreach ($concoDiagnos as $concoDiagId) {
                 $disp->conco_diag()->create(['conco_diag_id' => $concoDiagId]);
             }

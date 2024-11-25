@@ -8,6 +8,7 @@ use App\Http\Resources\Diagnos\DiagnosResource;
 use App\Http\Resources\Diagnos\DispConcoDiagnosResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class DispResource extends JsonResource
 {
@@ -20,8 +21,8 @@ class DispResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'begin_at' => $this->begin_at,
-            'end_at' => $this->end_at,
+            'begin_at' => Carbon::parse($this->begin_at)->valueOf(),
+            'end_at' => $this->end_at ? Carbon::parse($this->end_at)->valueOf() : null,
             'disp_status' => $this->disp_status->name ?? null,
             'disp_reason_close' => DispReasonCloseResource::make($this->disp_reason_close),
             'main_diagnos' => DiagnosResource::make($this->main_diag),

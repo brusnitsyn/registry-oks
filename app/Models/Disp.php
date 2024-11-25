@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
@@ -18,10 +19,18 @@ class Disp extends Model
         'disp_reason_close_id'
     ];
 
-    protected $casts = [
-        'begin_at' => 'datetime:Y-m-d',
-        'end_at' => 'datetime:Y-m-d',
-    ];
+//    protected function beginAt()
+//    {
+//        return Attribute::make(
+//            get: fn (mixed $value) => Carbon::parse($value)->getTimestampMs()
+//        );
+//    }
+//    protected function endAt()
+//    {
+//        return Attribute::make(
+//            get: fn (mixed $value) => Carbon::parse($value)->getTimestampMs()
+//        );
+//    }
 
     public function control_points()
     {

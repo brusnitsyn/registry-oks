@@ -5,6 +5,7 @@ namespace App\Http\Requests\Disp;
 use App\Models\Disp;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class UpdateDispRequest extends FormRequest
 {
@@ -39,8 +40,10 @@ class UpdateDispRequest extends FormRequest
     public function update(Disp $disp)
     {
         $data = $this->validated();
-        if (isset($data['begin_at']) && is_numeric($data['begin_at'])) $data['begin_at'] = Carbon::createFromTimestampMs($data['begin_at'], env('APP_TIMEZONE'));
-        if (isset($data['end_at']) && is_numeric($data['end_at'])) $data['end_at'] = Carbon::createFromTimestampMs($data['end_at'], env('APP_TIMEZONE'));
+        if (isset($data['begin_at']) && is_numeric($data['begin_at'])) $data['begin_at'] = Carbon::createFromTimestampMs($data['begin_at'])->toDateString();
+        if (isset($data['end_at']) && is_numeric($data['end_at'])) $data['end_at'] = Carbon::createFromTimestampMs($data['end_at'])->toDateString();
+
+        Log::info($data['begin_at']);
 
         if ($data['disp_state_id'] == 1) {
             $data['end_at'] = null;
