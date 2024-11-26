@@ -5,7 +5,7 @@ namespace App\Http\Resources\Disp;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CallDispControlPointResource extends JsonResource
+class DispCallBriefQuestionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,8 @@ class CallDispControlPointResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'result_call_id' => $this->result_call_id,
-            'result_call' => $this->result_call->name,
-            'info' => $this->info,
-            'brief' => DispCallBriefResource::make($this->defaultBrief),
-            'brief_answers' => $this->answers()
+            'question' => $this->question,
+            'answers' => DispCallBriefAnswerResource::collection($this->dispCallBriefAnswers)
         ];
     }
 }

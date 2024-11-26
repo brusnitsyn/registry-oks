@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources\Disp;
 
+use App\Models\DispCallBriefQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CallDispControlPointResource extends JsonResource
+class DispCallBriefQuestionChapterResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +17,8 @@ class CallDispControlPointResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'result_call_id' => $this->result_call_id,
-            'result_call' => $this->result_call->name,
-            'info' => $this->info,
-            'brief' => DispCallBriefResource::make($this->defaultBrief),
-            'brief_answers' => $this->answers()
+            'name' => $this->name,
+            'questions' => DispCallBriefQuestionResource::collection($this->dispCallBriefQuestions)
         ];
     }
 }
