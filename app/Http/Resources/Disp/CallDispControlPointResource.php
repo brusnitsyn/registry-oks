@@ -17,10 +17,11 @@ class CallDispControlPointResource extends JsonResource
         return [
             'id' => $this->id,
             'result_call_id' => $this->result_call_id,
-            'result_call' => $this->result_call->name,
+            'result_call' => $this->result_call->name ?? null,
             'info' => $this->info,
             'brief' => DispCallBriefResource::make($this->defaultBrief),
-            'brief_answers' => $this->answers()
+            'brief_answers' => $this->answers(), //
+            'brief_questions_answers' => $this->answers_options()
         ];
     }
 }

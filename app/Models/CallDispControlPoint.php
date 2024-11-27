@@ -26,19 +26,31 @@ class CallDispControlPoint extends Model
 
     public function dispCallBriefQuestionAnswer()
     {
-        return $this->hasMany(DispCallBriefQuestionAnswer::class, 'call_disp_control_point_id');
+        return $this->hasMany(DispCallBriefQuestionAnswer::class, 'call_disp_control_point_id', 'id');
     }
 
     public function answers()
     {
-        $array = $this->dispCallBriefQuestionAnswer()->pluck('disp_call_brief_answer_id', 'id');
+        $array = $this->dispCallBriefQuestionAnswer()->get()->pluck('disp_call_brief_answer_id', 'disp_call_brief_question_id'); //->pluck('dispCallBriefQuestionAnswer.disp_call_brief_question_answer.id', 'id');
 //        dd($array);
-        return $array; // возвращает обьект, а должен массив
-//        return Arr::pluck($array, 'disp_call_brief_question_id', 'disp_call_brief_answer_id');
+        return $array;
     }
 
     public function defaultBrief()
     {
         return $this->belongsTo(DispCallBrief::class, 'disp_call_brief_id');
+    }
+
+    public function answers_options()
+    {
+        $answers = collect();
+        foreach ($this->defaultBrief->dispCallBriefQuestions as $question)
+        {
+            foreach ($question->dispCallBriefAnswers as $dispCallBriefAnswer) {
+                $answers->push($dispCallBriefAnswer->only('id', 'disp_call_brief_question_id', 'has_send_smp', 'has_send_doctor', 'has_attention', 'has_need_consult_doctor'));
+            }
+        }
+
+        return $answers;
     }
 }

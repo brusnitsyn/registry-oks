@@ -21,6 +21,16 @@ class DispCallBrief extends Model
         return $this->hasMany(DispCallBriefQuestionChapter::class);
     }
 
+    public function dispCallBriefAnswers()
+    {
+        return $this->hasManyThrough(DispCallBriefQuestionChapter::class, DispCallBriefQuestion::class);
+    }
+
+    public function dispCallBriefQuestions()
+    {
+        return $this->hasMany(DispCallBriefQuestion::class);
+    }
+
 //    public function answers()
 //    {
 //        $collection = Collection::empty();

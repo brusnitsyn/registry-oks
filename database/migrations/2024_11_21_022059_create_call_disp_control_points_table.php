@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('call_disp_control_points', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\DispControlPoint::class);
-            $table->foreignIdFor(App\Models\ResultCall::class);
+            $table->foreignIdFor(App\Models\ResultCall::class)->nullable();
             $table->text('info')->nullable();
             $table->timestamps();
         });

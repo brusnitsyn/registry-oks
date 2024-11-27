@@ -5,6 +5,7 @@ namespace App\Http\Requests\Disp;
 use App\Models\DispCallBriefQuestionAnswer;
 use App\Models\DispControlPoint;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
 
 class UpdateControlPoint extends FormRequest
 {
@@ -43,7 +44,9 @@ class UpdateControlPoint extends FormRequest
     {
         $cpv = $this->validated('control_point');
         $call = $this->validated('call');
-        $brief = $this->validated('brief');
+        $brief = $this->validated('call.brief');
+
+        $cpv['controled_at'] = Carbon::now();
 
         $controlPoint->update($cpv);
 
@@ -58,13 +61,13 @@ class UpdateControlPoint extends FormRequest
                     DispCallBriefQuestionAnswer::updateOrCreate(
                         [
                             'disp_id' => $controlPoint->disp->id,
-                            'call_disp_control_point_id' => $controlPoint['id'],
+                            'call_disp_control_point_id' => $cpv['id'],
                             'disp_call_brief_id' => $brief['id'],
                             'disp_call_brief_question_id' => $questionId,
                         ],
                         [
                             'disp_id' => $controlPoint->disp->id,
-                            'call_disp_control_point_id' => $controlPoint['id'],
+                            'call_disp_control_point_id' => $cpv['id'],
                             'disp_call_brief_id' => $brief['id'],
                             'disp_call_brief_question_id' => $questionId,
                             'disp_call_brief_answer_id' => $answerId,

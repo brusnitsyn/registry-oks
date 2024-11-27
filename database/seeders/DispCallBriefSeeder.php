@@ -25,7 +25,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Как Вы себя чувствуете на сегодняшний день?'
+            'question' => 'Как Вы себя чувствуете на сегодняшний день?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -51,7 +52,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Бывает ли у Вас боль, тяжесть, давление в грудной клетке?'
+            'question' => 'Бывает ли у Вас боль, тяжесть, давление в грудной клетке?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -63,7 +65,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Боль возникает'
+            'question' => 'Боль возникает',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -75,7 +78,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Длительность боли'
+            'question' => 'Длительность боли',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -87,7 +91,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Что Вы делаете при появлении боли?'
+            'question' => 'Что Вы делаете при появлении боли?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -99,7 +104,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'За последние дни боли стали чаще, интенсивнее? По интенсивности похожи как во время инфаркта миокарда?'
+            'question' => 'За последние дни боли стали чаще, интенсивнее? По интенсивности похожи как во время инфаркта миокарда?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -118,7 +124,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Беспокоит ли Вас одышка?'
+            'question' => 'Беспокоит ли Вас одышка?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -130,7 +137,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Есть отеки на ногах?'
+            'question' => 'Есть отеки на ногах?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -142,7 +150,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Учащенное сердцебиение, перебои в работе сердца, чувство замирания'
+            'question' => 'Учащенное сердцебиение, перебои в работе сердца, чувство замирания',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -161,7 +170,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Контроль АД'
+            'question' => 'Контроль АД',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -181,7 +191,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Контроль ЧСС'
+            'question' => 'Контроль ЧСС',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -208,7 +219,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'После выписки из стационара Вас посетил участковый врач (Вы обратились на прием)?'
+            'question' => 'После выписки из стационара Вас посетил участковый врач (Вы обратились на прием)?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -227,7 +239,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Вы получили препараты, рекомендованные Вам кардиологом при выписке из стационара?'
+            'question' => 'Вы получили препараты, рекомендованные Вам кардиологом при выписке из стационара?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -242,7 +255,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Вы принимаете в настоящее время препараты, препятствующие тромбозу стентов? (Ацетилсалициловая кислота, Клопидогрел, Тикагрелор (Брилинта)'
+            'question' => 'Вы принимаете в настоящее время препараты, препятствующие тромбозу стентов? (Ацетилсалициловая кислота, Клопидогрел, Тикагрелор (Брилинта)',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -254,7 +268,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Вы принимаете назначенные препараты в прежних дозировках?'
+            'question' => 'Вы принимаете назначенные препараты в прежних дозировках?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -266,7 +281,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Была ли у Вас замена или отмена препаратов?'
+            'question' => 'Была ли у Вас замена или отмена препаратов?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -279,7 +295,8 @@ class DispCallBriefSeeder extends Seeder
 
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'По чьей инициативе отменены или заменены препараты?'
+            'question' => 'По чьей инициативе отменены или заменены препараты?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -291,7 +308,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Как давно Вы отменили эти  препараты?'
+            'question' => 'Как давно Вы отменили эти  препараты?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
@@ -310,7 +328,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
-            'question' => 'Участковый терапевт/кардиолог сообщили Вам дату следующего визита?'
+            'question' => 'Участковый терапевт/кардиолог сообщили Вам дату следующего визита?',
+            'disp_call_brief_id' => $brief->id
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([

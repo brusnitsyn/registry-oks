@@ -119,6 +119,8 @@ class Disp extends Model
             $disp->control_points()->create([
                 'control_point_id' => 1,
                 'control_at' => Carbon::parse($disp->begin_at)->copy()->addDays(3)
+            ])->calls()->create([
+                'disp_id' => $disp->id,
             ]); // 3
 //            $disp->control_points()->create([
 //                'control_point_id' => 2,
@@ -127,6 +129,8 @@ class Disp extends Model
             $disp->control_points()->create([
                 'control_point_id' => 2,
                 'control_at' => Carbon::parse($disp->begin_at)->copy()->addMonths()
+            ])->calls()->create([
+                'disp_id' => $disp->id,
             ]);
 //            $disp->control_points()->create([
 //                'control_point_id' => 4,
@@ -135,14 +139,20 @@ class Disp extends Model
             $disp->control_points()->create([
                 'control_point_id' => 3,
                 'control_at' => Carbon::parse($disp->begin_at)->copy()->addMonths(3)
+            ])->calls()->create([
+                'disp_id' => $disp->id,
             ]);
             $disp->control_points()->create([
                 'control_point_id' => 4,
                 'control_at' => Carbon::parse($disp->begin_at)->copy()->addMonths(6)
+            ])->calls()->create([
+                'disp_id' => $disp->id,
             ]);
             $disp->control_points()->create([
                 'control_point_id' => 5,
                 'control_at' => Carbon::parse($disp->begin_at)->copy()->addMonths(12)
+            ])->calls()->create([
+                'disp_id' => $disp->id,
             ]);
 //            $disp->control_points()->create([
 //                'control_point_id' => 8,

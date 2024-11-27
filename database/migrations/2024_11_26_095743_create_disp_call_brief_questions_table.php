@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('disp_call_brief_questions', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\DispCallBrief::class);
             $table->foreignIdFor(\App\Models\DispCallBriefQuestionChapter::class);
             $table->string('question');
             $table->timestamps();
