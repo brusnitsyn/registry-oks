@@ -21,7 +21,7 @@ class DispResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'begin_at' => Carbon::parse($this->begin_at)->valueOf(),
+            'begin_at' => $this->begin_at ? Carbon::parse($this->begin_at)->valueOf() : null,
             'end_at' => $this->end_at ? Carbon::parse($this->end_at)->valueOf() : null,
             'disp_status' => $this->disp_status->name ?? null,
             'disp_reason_close' => DispReasonCloseResource::make($this->disp_reason_close),

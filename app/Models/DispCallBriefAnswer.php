@@ -12,11 +12,12 @@ class DispCallBriefAnswer extends Model
         'has_send_smp',
         'has_send_doctor',
         'has_attention',
-        'has_need_consult_doctor'
+        'has_need_consult_doctor',
+        'has_disable_other_answer'
     ];
 
     public function dispCallBriefQuestion()
     {
-        return $this->hasOne(DispCallBriefQuestion::class);
+        return $this->belongsTo(DispCallBriefQuestion::class);
     }
 }

@@ -55,11 +55,11 @@ class StorePacientRequest extends FormRequest
 
         $pacientData = $this->validated();
 
-        if (isset($pacientData['birth_at']) && is_numeric($pacientData['birth_at'])) $pacientData['birth_at'] = Carbon::createFromTimestampMs($pacientData['birth_at'], env('APP_TIMEZONE'))->toDateString();
-        if (isset($pacientData['receipt_at']) && is_numeric($pacientData['receipt_at'])) $pacientData['receipt_at'] = Carbon::createFromTimestampMs($pacientData['receipt_at'], env('APP_TIMEZONE'))->toDateString();
-        if (isset($pacientData['discharge_at']) && is_numeric($pacientData['discharge_at'])) $pacientData['discharge_at'] = Carbon::createFromTimestampMs($pacientData['discharge_at'], env('APP_TIMEZONE'))->toDateString();
-        if (isset($pacientData['disp']['begin_at']) && is_numeric($pacientData['disp']['begin_at'])) $pacientData['disp']['begin_at'] = Carbon::createFromTimestampMs($pacientData['disp']['begin_at'])->toDateString();
-        if (isset($pacientData['disp']['end_at']) && is_numeric($pacientData['disp']['end_at'])) $pacientData['disp']['end_at'] = Carbon::createFromTimestampMs($pacientData['disp']['end_at'], env('APP_TIMEZONE'))->toDateString();
+        if (isset($pacientData['birth_at']) && is_numeric($pacientData['birth_at'])) $pacientData['birth_at'] = Carbon::createFromTimestampMs($pacientData['birth_at'], config('app.timezone'))->toDateString();
+        if (isset($pacientData['receipt_at']) && is_numeric($pacientData['receipt_at'])) $pacientData['receipt_at'] = Carbon::createFromTimestampMs($pacientData['receipt_at'], config('app.timezone'))->toDateString();
+        if (isset($pacientData['discharge_at']) && is_numeric($pacientData['discharge_at'])) $pacientData['discharge_at'] = Carbon::createFromTimestampMs($pacientData['discharge_at'], config('app.timezone'))->toDateString();
+        if (isset($pacientData['disp']['begin_at']) && is_numeric($pacientData['disp']['begin_at'])) $pacientData['disp']['begin_at'] = Carbon::createFromTimestampMs($pacientData['disp']['begin_at'], config('app.timezone'))->toDateString();
+        if (isset($pacientData['disp']['end_at']) && is_numeric($pacientData['disp']['end_at'])) $pacientData['disp']['end_at'] = Carbon::createFromTimestampMs($pacientData['disp']['end_at'], config('app.timezone'))->toDateString();
 
         $pacient = Pacient::where('snils', $pacientData['snils'])->first();
 

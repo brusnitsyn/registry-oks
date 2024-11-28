@@ -57,7 +57,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
-            'answer' => 'Нет'
+            'answer' => 'Нет',
+            'has_disable_other_answer' => true
         ]);
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'Да',

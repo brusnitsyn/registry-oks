@@ -21,7 +21,7 @@ class CallDispControlPointResource extends JsonResource
             'info' => $this->info,
             'brief' => DispCallBriefResource::make($this->defaultBrief),
             'brief_answers' => $this->answers(), //
-            'brief_questions_answers' => $this->answers_options()
+            'brief_questions_answers' => DispCallBriefAnswerResource::collection($this->answers_options())
         ];
     }
 }

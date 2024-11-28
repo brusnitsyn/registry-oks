@@ -38,8 +38,8 @@ class CreateDispRequest extends FormRequest
     public function store(Pacient $pacient)
     {
         $data = $this->validated();
-        if (isset($data['begin_at']) && is_numeric($data['begin_at'])) $data['begin_at'] = Carbon::createFromTimestampMs($data['begin_at'], env('APP_TIMEZONE'));
-        if (isset($data['end_at']) && is_numeric($data['end_at'])) $data['end_at'] = Carbon::createFromTimestampMs($data['end_at'], env('APP_TIMEZONE'));
+        if (isset($data['begin_at']) && is_numeric($data['begin_at'])) $data['begin_at'] = Carbon::createFromTimestampMs($data['begin_at'], config('app.timezone'))->toDateString();
+        if (isset($data['end_at']) && is_numeric($data['end_at'])) $data['end_at'] = Carbon::createFromTimestampMs($data['end_at'], config('app.timezone'))->toDateString();
 
         $activeDisp = $pacient->active_disp()->first();
 

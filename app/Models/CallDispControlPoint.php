@@ -47,7 +47,7 @@ class CallDispControlPoint extends Model
         foreach ($this->defaultBrief->dispCallBriefQuestions as $question)
         {
             foreach ($question->dispCallBriefAnswers as $dispCallBriefAnswer) {
-                $answers->push($dispCallBriefAnswer->only('id', 'disp_call_brief_question_id', 'has_send_smp', 'has_send_doctor', 'has_attention', 'has_need_consult_doctor'));
+                $answers->push($dispCallBriefAnswer);
             }
         }
 

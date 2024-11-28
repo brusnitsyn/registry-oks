@@ -32,6 +32,11 @@ class Disp extends Model
 //        );
 //    }
 
+    public function pacient()
+    {
+        return $this->belongsTo(Pacient::class);
+    }
+
     public function control_points()
     {
         return $this->hasMany(DispControlPoint::class);
@@ -118,7 +123,7 @@ class Disp extends Model
         static::created(function (Disp $disp) {
             $disp->control_points()->create([
                 'control_point_id' => 1,
-                'control_at' => Carbon::parse($disp->begin_at)->copy()->addDays(3)
+                'control_at' => Carbon::parse($disp->pacient->receipt_at)->copy()->addDays(3)
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]); // 3
@@ -128,7 +133,7 @@ class Disp extends Model
 //            ]);
             $disp->control_points()->create([
                 'control_point_id' => 2,
-                'control_at' => Carbon::parse($disp->begin_at)->copy()->addMonths()
+                'control_at' => Carbon::parse($disp->pacient->receipt_at)->copy()->addMonths()
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]);
@@ -138,19 +143,19 @@ class Disp extends Model
 //            ]);
             $disp->control_points()->create([
                 'control_point_id' => 3,
-                'control_at' => Carbon::parse($disp->begin_at)->copy()->addMonths(3)
+                'control_at' => Carbon::parse($disp->pacient->receipt_at)->copy()->addMonths(3)
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]);
             $disp->control_points()->create([
                 'control_point_id' => 4,
-                'control_at' => Carbon::parse($disp->begin_at)->copy()->addMonths(6)
+                'control_at' => Carbon::parse($disp->pacient->receipt_at)->copy()->addMonths(6)
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]);
             $disp->control_points()->create([
                 'control_point_id' => 5,
-                'control_at' => Carbon::parse($disp->begin_at)->copy()->addMonths(12)
+                'control_at' => Carbon::parse($disp->pacient->receipt_at)->copy()->addMonths(12)
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]);
