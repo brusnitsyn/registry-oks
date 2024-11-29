@@ -122,7 +122,7 @@ class Disp extends Model
         static::created(function (Disp $disp) {
             $disp->control_points()->create([
                 'control_point_id' => 1,
-                'control_at' => Carbon::parse($disp->pacient->discharge_at)->copy()->addDays(3)
+                'control_at' => Carbon::parse($disp->pacient->discharge_at, config('app.timezone'))->copy()->addDays(3)
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]); // 3
@@ -132,7 +132,7 @@ class Disp extends Model
 //            ]);
             $disp->control_points()->create([
                 'control_point_id' => 2,
-                'control_at' => Carbon::parse($disp->pacient->discharge_at)->copy()->addMonths()
+                'control_at' => Carbon::parse($disp->pacient->discharge_at, config('app.timezone'))->copy()->addMonths()
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]);
@@ -142,19 +142,19 @@ class Disp extends Model
 //            ]);
             $disp->control_points()->create([
                 'control_point_id' => 3,
-                'control_at' => Carbon::parse($disp->pacient->discharge_at)->copy()->addMonths(3)
+                'control_at' => Carbon::parse($disp->pacient->discharge_at, config('app.timezone'))->copy()->addMonths(3)
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]);
             $disp->control_points()->create([
                 'control_point_id' => 4,
-                'control_at' => Carbon::parse($disp->pacient->discharge_at)->copy()->addMonths(6)
+                'control_at' => Carbon::parse($disp->pacient->discharge_at, config('app.timezone'))->copy()->addMonths(6)
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]);
             $disp->control_points()->create([
                 'control_point_id' => 5,
-                'control_at' => Carbon::parse($disp->pacient->discharge_at)->copy()->addMonths(12)
+                'control_at' => Carbon::parse($disp->pacient->discharge_at, config('app.timezone'))->copy()->addMonths(12)
             ])->calls()->create([
                 'disp_id' => $disp->id,
             ]);
