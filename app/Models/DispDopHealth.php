@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DispDopHealth extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'short_name'
     ];
 }

@@ -31,7 +31,7 @@ class ShortPacientResource extends JsonResource
             'disp_status' => $this->last_disp->disp_state_id == 1 ? 'Взят' : 'Снят',
             'disp_status_id' => $this->last_disp->disp_state_id,
             'lek_pr_status' => $this->last_disp->lek_pr_state->name,
-            'dop_heal' => $this->last_disp->disp_dop_health->name,
+            'dop_heal' => $this->last_disp->disp_dop_health->short_name,
             'control_points' => [
                 'day3' => [
                     'control_point_option_id' => $this->last_disp->day3->control_point_option_id,

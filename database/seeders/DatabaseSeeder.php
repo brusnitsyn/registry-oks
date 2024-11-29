@@ -168,19 +168,24 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DispDopHealth::create([
-            'name' => 'Не требуется'
+            'name' => 'Не требуется',
+            'short_name' => 'Не требуется'
         ]);
         DispDopHealth::create([
-            'name' => 'Следующий этап ЧКВ'
+            'name' => 'Следующий этап ЧКВ',
+            'short_name' => 'ЧКВ'
         ]);
         DispDopHealth::create([
-            'name' => 'Контроль КАГ'
+            'name' => 'Контроль КАГ',
+            'short_name' => 'КАГ'
         ]);
         DispDopHealth::create([
-            'name' => 'АКШ'
+            'name' => 'АКШ',
+            'short_name' => 'АКШ'
         ]);
         DispDopHealth::create([
-            'name' => 'Консультация кардиохирурга'
+            'name' => 'Консультация кардиохирурга',
+            'short_name' => 'Консультация'
         ]);
 
         Mkb::create([ 'ds' => 'I20.0',  'name' => 'Нестабильная стенокардия (впервые возникшая, прогрессирующая)', 'begin_at' => Carbon::now()->subCenturies()->startOfCentury(), 'end_at' => Carbon::now()->addCenturies()->endOfCentury() ]);
