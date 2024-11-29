@@ -41,7 +41,7 @@ class StorePacientRequest extends FormRequest
             'disp.main_diagnos_id' => ['required', 'numeric'],
             'disp.conco_diagnos_id' => ['nullable', 'array'],
             'disp.disp_state_id' => ['nullable', 'numeric'],
-            'disp.complications' => ['nullable', 'array'],
+            'disp.complications_id' => ['nullable', 'array'],
             'disp.lek_pr_state_id' => ['nullable', 'numeric'],
             'disp.disp_dop_health_id' => ['nullable', 'numeric'],
         ];
@@ -51,7 +51,7 @@ class StorePacientRequest extends FormRequest
     {
         $mainDiagnosId = $this->validated('disp.main_diagnos_id');
         $concoDiagnos = $this->validated('disp.conco_diagnos_id');
-        $complicationsDisp = $this->validated('disp.complications');
+        $complicationsDisp = $this->validated('disp.complications_id');
 
         $pacientData = $this->validated();
 
