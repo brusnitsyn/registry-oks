@@ -20,6 +20,9 @@ return new class extends Migration
             $table->boolean('has_attention')->default(false);
             $table->boolean('has_need_consult_doctor')->default(false);
             $table->boolean('has_disable_other_answer')->default(false);
+            $table->boolean('has_disable_answers')->default(false);
+            $table->string('disable_answer_ids')->nullable();
+            $table->string('enable_answer_ids')->nullable();
             $table->timestamps();
         });
     }

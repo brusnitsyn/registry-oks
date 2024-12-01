@@ -288,10 +288,13 @@ class DispCallBriefSeeder extends Seeder
 
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'Да',
-            'has_attention' => true
+            'has_attention' => true,
+            'enable_answer_ids' => serialize([40, 41, 42, 43])
         ]);
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'Нет',
+            'has_disable_answers' => true,
+            'disable_answer_ids' => serialize([40, 41, 42, 43])
         ]);
 
 
