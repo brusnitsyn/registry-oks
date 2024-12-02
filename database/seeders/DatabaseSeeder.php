@@ -78,10 +78,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DispState::create([
-            'name' => 'Взят на учет'
+            'name' => 'Взят на диспансерный учет'
         ]);
         DispState::create([
-            'name' => 'Снят с учета'
+            'name' => 'Снят с диспансерного учета'
         ]);
 
         LekPrState::create([
@@ -205,14 +205,9 @@ class DatabaseSeeder extends Seeder
         ResultCall::create([ 'name' => 'Не берет трубку/выключен телефон' ]);
         ResultCall::create([ 'name' => 'Пациент отказывается от предоставления информации' ]);
 
-        DispReasonClose::create([ 'num' => '1', 'name' => 'Выздоровление' ]);
-        DispReasonClose::create([ 'num' => '4', 'name' => 'Смерть' ]);
-        DispReasonClose::create([ 'num' => '5', 'name' => 'Прочие' ]);
-        DispReasonClose::create([ 'num' => '6', 'name' => 'Снятие диагноза' ]);
-        DispReasonClose::create([ 'num' => '21', 'name' => 'Выбытие в другой субъект РФ' ]);
-        DispReasonClose::create([ 'num' => '22', 'name' => 'Выбытие за пределы РФ' ]);
-        DispReasonClose::create([ 'num' => '31', 'name' => 'Перевод в другую медицинскую организацию' ]);
-        DispReasonClose::create([ 'num' => '32', 'name' => 'Перевод в ведомственную организацию (в том числе ФСИН)' ]);
+        DispReasonClose::create([ 'num' => '1', 'name' => 'Истечение времени' ]);
+        DispReasonClose::create([ 'num' => '2', 'name' => 'Повторное событие' ]);
+        DispReasonClose::create([ 'num' => '3', 'name' => 'Смерть' ]);
 
 //        Mkb::create([ 'ds' => 'I21.0',  'name' => 'Острый трансмуральный инфаркт передней стенки миокарда', 'begin_at' => Carbon::now()->subCenturies()->startOfCentury(), 'end_at' => Carbon::now()->addCenturies()->endOfCentury() ]);
 //        Mkb::create([ 'ds' => 'I21.1',  'name' => 'Острый трансмуральный инфаркт нижней стенки миокарда', 'begin_at' => Carbon::now()->subCenturies()->startOfCentury(), 'end_at' => Carbon::now()->addCenturies()->endOfCentury() ]);

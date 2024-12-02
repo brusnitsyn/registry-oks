@@ -176,6 +176,10 @@ class DispCallBriefSeeder extends Seeder
         ]);
 
         $briefQuestion->dispCallBriefAnswers()->create([
+            'answer' => '<90 мм рт. ст.',
+            'has_send_smp' => true
+        ]);
+        $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => '100/70 мм рт. ст.',
             'has_need_consult_doctor' => true
         ]);
@@ -184,10 +188,6 @@ class DispCallBriefSeeder extends Seeder
         ]);
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => '>180/100 мм рт. ст.',
-            'has_send_smp' => true
-        ]);
-        $briefQuestion->dispCallBriefAnswers()->create([
-            'answer' => '<90 мм рт. ст.',
             'has_send_smp' => true
         ]);
 
@@ -252,7 +252,8 @@ class DispCallBriefSeeder extends Seeder
         ]);
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'Нет',
-            'has_need_consult_doctor' => true
+            'has_need_consult_doctor' => true,
+//            'has_disable_other_answer' => true,
         ]);
 
         $briefQuestion = $briefQuestionChapter->dispCallBriefQuestions()->create([
