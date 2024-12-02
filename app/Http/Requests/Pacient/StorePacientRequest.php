@@ -83,6 +83,8 @@ class StorePacientRequest extends FormRequest
             foreach ($complicationsDisp as $complDisp) {
                 $disp->complications()->create(['complication_id' => $complDisp]);
             }
+        } else {
+            $disp->complications()->delete();
         }
 
         if ($concoDiagnos) {
@@ -90,6 +92,8 @@ class StorePacientRequest extends FormRequest
             foreach ($concoDiagnos as $concoDiagId) {
                 $disp->conco_diag()->create(['conco_diag_id' => $concoDiagId]);
             }
+        } else {
+            $disp->conco_diag()->delete();
         }
 
         return $pacient;

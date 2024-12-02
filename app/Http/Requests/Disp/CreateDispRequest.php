@@ -51,7 +51,7 @@ class CreateDispRequest extends FormRequest
 
         $disp->diagnoses()->updateOrCreate(['disp_id' => $disp->id], ['mkb_id' => $data['main_diagnos_id'], 'diagnos_type_id' => 1]);
 
-        if ($data['complications_id']) {
+        if (isset($data['complications_id']) && !is_null($data['complications_id'])) {
             foreach ($data['complications_id'] as $complication) {
                 $disp->complications()->create(['complication_id' => $complication]);
             }
