@@ -72,7 +72,7 @@ class DispCallBriefSeeder extends Seeder
 
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'При быстрой ходьбе, подъеме в гору',
-            'has_send_smp' => true
+            'has_send_doctor' => true
         ]);
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'В покое, положении лежа, сидя'
@@ -85,7 +85,7 @@ class DispCallBriefSeeder extends Seeder
 
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'До 15 минут',
-            'has_send_smp' => true
+            'has_send_doctor' => true
         ]);
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'Несколько секунд, более 30 минут, часами'
@@ -98,7 +98,7 @@ class DispCallBriefSeeder extends Seeder
 
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'Останавливаюсь или принимаю нитроглицерин',
-            'has_send_smp' => true
+            'has_send_doctor' => true
         ]);
         $briefQuestion->dispCallBriefAnswers()->create([
             'answer' => 'Продолжаю идти в обычном темпе'
