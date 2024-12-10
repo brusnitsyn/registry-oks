@@ -19,7 +19,7 @@ class PacientController extends Controller
         $searchValue = $request->query('search_value');
 
         $sortColumn = $request->query('sort_column', 'id');
-        $sortDirection = $request->query('sort_direction', 'asc');
+        $sortDirection = $request->query('sort_direction', 'ascend');
 
         if ($sortDirection === 'descend') $sortDirection = 'desc';
         else if ($sortDirection === 'ascend') $sortDirection = 'asc';
