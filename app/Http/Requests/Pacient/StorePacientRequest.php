@@ -26,21 +26,25 @@ class StorePacientRequest extends FormRequest
     {
         return [
             'num' => ['nullable', 'string'],
-            'fio' => ['required', 'string'],
+//            'fio' => ['required', 'string'],
+            'family' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'ot' => ['required', 'string'],
             'snils' => ['required', 'string'],
             'tel' => ['required', 'string'],
+            'dop_tel' => ['required', 'string'],
             'birth_at' => ['required'],
             'lpu_id' => ['required', 'numeric'],
             'receipt_at' => ['required'],
             'discharge_at' => ['nullable'],
 
             'disp.id' => ['nullable', 'numeric'],
-            'disp.begin_at' => ['required'],
+            'disp.begin_at' => ['nullable'],
             'disp.end_at' => ['nullable'],
-            'disp.disp_reason_close_id' => ['nullable', 'numeric'],
+            'disp.disp_reason_close_id' => ['nullable'],
             'disp.main_diagnos_id' => ['required', 'numeric'],
             'disp.conco_diagnos_id' => ['nullable', 'array'],
-            'disp.disp_state_id' => ['nullable', 'numeric'],
+            'disp.disp_state_id' => ['nullable'],
             'disp.complications_id' => ['nullable', 'array'],
             'disp.lek_pr_state_id' => ['nullable', 'numeric'],
             'disp.disp_dop_health_id' => ['nullable', 'numeric'],
@@ -61,6 +65,9 @@ class StorePacientRequest extends FormRequest
         if (isset($pacientData['disp']['begin_at']) && is_numeric($pacientData['disp']['begin_at'])) $pacientData['disp']['begin_at'] = Carbon::createFromTimestampMs($pacientData['disp']['begin_at'], config('app.timezone'))->toDateString();
         if (isset($pacientData['disp']['end_at']) && is_numeric($pacientData['disp']['end_at'])) $pacientData['disp']['end_at'] = Carbon::createFromTimestampMs($pacientData['disp']['end_at'], config('app.timezone'))->toDateString();
 
+        // Формирование ФИО
+        $pacientData['fio'] = $pacientData['family'] . ' ' . $pacientData['name'] . ' ' . $pacientData['ot'];
+
         $pacient = Pacient::where('snils', $pacientData['snils'])->first();
 
         if (!$pacient) {
@@ -68,6 +75,7 @@ class StorePacientRequest extends FormRequest
         }
 
         $disp = null;
+//        $pacientData['disp']['disp_state_id'] = 2; // Снят с диспансерного учета
         if (isset($pacientData['disp']['id'])) $disp = Disp::where('id', $pacientData['disp']['id'])->first();
 
         if (!$disp) {

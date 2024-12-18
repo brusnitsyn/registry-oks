@@ -11,6 +11,7 @@ class Pacient extends Model
         'fio',
         'snils',
         'tel',
+        'dop_tel',
         'birth_at',
         'receipt_at',
         'discharge_at',

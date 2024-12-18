@@ -59,8 +59,8 @@ class PacientController extends Controller
 
     }
 
-    public function delete()
+    public function delete(Pacient $pacient)
     {
-
+        $pacient->delete();
     }
 }

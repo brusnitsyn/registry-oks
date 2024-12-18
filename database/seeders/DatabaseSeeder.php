@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Взят на диспансерный учет'
         ]);
         DispState::create([
-            'name' => 'Снят с диспансерного учета'
+            'name' => 'Не взят на диспансерный учет'
         ]);
 
         LekPrState::create([
