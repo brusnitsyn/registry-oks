@@ -24,6 +24,7 @@ class FullPacientResource extends JsonResource
             'fio' => $this->fio,
             'snils' => $this->snils,
             'tel' => $this->tel,
+            'dop_tel' => $this->dop_tel,
             'birth_at' => $this->birth_at,
             'receipt_at' => $this->receipt_at,
             'discharge_at' => $this->discharge_at,

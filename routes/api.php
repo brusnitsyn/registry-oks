@@ -53,6 +53,10 @@ Route::prefix('lek-pr-state')->group(function () {
     Route::get('/', [\App\Http\Controllers\Api\v1\LekPrStateController::class, 'index'])->middleware(['auth:sanctum']);
 });
 
+Route::prefix('lek-period')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Api\v1\LekPeriodController::class, 'index'])->middleware(['auth:sanctum']);
+});
+
 Route::prefix('disp-dop-health')->group(function () {
     Route::get('/', [\App\Http\Controllers\Api\v1\DispDopHealthController::class, 'index'])->middleware(['auth:sanctum']);
 });

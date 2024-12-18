@@ -14,6 +14,7 @@ class Disp extends Model
         'disp_state_id',
         'pacient_id',
         'lek_pr_state_id',
+        'lek_period_id',
 
         'disp_dop_health_id',
         'disp_reason_close_id'
@@ -80,6 +81,11 @@ class Disp extends Model
     public function lek_pr_state()
     {
         return $this->belongsTo(LekPrState::class);
+    }
+
+    public function lek_period()
+    {
+        return $this->belongsTo(LekPeriod::class);
     }
 
     public function disp_dop_health()

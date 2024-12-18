@@ -47,6 +47,7 @@ class StorePacientRequest extends FormRequest
             'disp.disp_state_id' => ['nullable'],
             'disp.complications_id' => ['nullable', 'array'],
             'disp.lek_pr_state_id' => ['nullable', 'numeric'],
+            'disp.lek_period_id' => ['nullable', 'numeric'],
             'disp.disp_dop_health_id' => ['nullable', 'numeric'],
         ];
     }

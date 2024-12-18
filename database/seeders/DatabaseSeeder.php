@@ -10,6 +10,7 @@ use App\Models\DiagnosType;
 use App\Models\DispDopHealth;
 use App\Models\DispReasonClose;
 use App\Models\DispState;
+use App\Models\LekPeriod;
 use App\Models\LekPrState;
 use App\Models\Lpu;
 use App\Models\Mkb;
@@ -208,6 +209,10 @@ class DatabaseSeeder extends Seeder
         DispReasonClose::create([ 'num' => '1', 'name' => 'Истечение времени' ]);
         DispReasonClose::create([ 'num' => '2', 'name' => 'Повторное событие' ]);
         DispReasonClose::create([ 'num' => '3', 'name' => 'Смерть' ]);
+
+        LekPeriod::create([ 'name' => '1 месяц' ]);
+        LekPeriod::create([ 'name' => '2 месяца' ]);
+        LekPeriod::create([ 'name' => '3 месяца' ]);
 
 //        Mkb::create([ 'ds' => 'I21.0',  'name' => 'Острый трансмуральный инфаркт передней стенки миокарда', 'begin_at' => Carbon::now()->subCenturies()->startOfCentury(), 'end_at' => Carbon::now()->addCenturies()->endOfCentury() ]);
 //        Mkb::create([ 'ds' => 'I21.1',  'name' => 'Острый трансмуральный инфаркт нижней стенки миокарда', 'begin_at' => Carbon::now()->subCenturies()->startOfCentury(), 'end_at' => Carbon::now()->addCenturies()->endOfCentury() ]);

@@ -29,6 +29,7 @@ class DispResource extends JsonResource
             'conco_diagnos' => DispConcoDiagnosResource::collection($this->conco_diag),
             'complications' => DispComplicationResource::collection($this->complications) ?? null,
             'lek_pr_state' => $this->lek_pr_state->name ?? null,
+            'lek_period' => $this->lek_period->name ?? null,
             'disp_dop_health' => $this->disp_dop_health->name ?? null,
             'control_points' => DispControlPointResource::collection($this->control_points),
         ];
