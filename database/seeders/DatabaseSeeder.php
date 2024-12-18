@@ -29,26 +29,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'fio' => 'Администратор',
-            'login' => 'admin',
-            'password' => Hash::make('1234567'),
-            'role_id' => 1
-        ]);
-
-        User::create([
-            'fio' => 'Оператор',
-            'login' => 'operator',
-            'password' => Hash::make('1234567'),
-            'role_id' => 2
-        ]);
-
-        User::create([
-            'fio' => 'Врач',
-            'login' => 'doctor',
-            'password' => Hash::make('1234567'),
-            'role_id' => 3
-        ]);
+//        User::create([
+//            'fio' => 'Администратор',
+//            'login' => 'admin',
+//            'password' => Hash::make('1234567'),
+//            'role_id' => 1
+//        ]);
+//
+//        User::create([
+//            'fio' => 'Оператор',
+//            'login' => 'operator',
+//            'password' => Hash::make('1234567'),
+//            'role_id' => 2
+//        ]);
+//
+//        User::create([
+//            'fio' => 'Врач',
+//            'login' => 'doctor',
+//            'password' => Hash::make('1234567'),
+//            'role_id' => 3
+//        ]);
 
         Lpu::create([
             'full_name' => 'РСЦ Благовещенск',
